@@ -1,19 +1,11 @@
 import { renderToString } from "react-dom/server";
-import { QueryClient, QueryClientProvider, dehydrate } from "@tanstack/react-query";
 import { Router } from "wouter";
-import superjson from "superjson";
-import { httpBatchLink } from "@trpc/client";
-import { trpc } from "@/lib/trpc";
 import App from "./App";
-import { prefetchForPath, type HeadMeta, type SsrPrefetch } from "./ssr/prefetch";
+import { articles } from "@/lib/articles";
 
-export async function render(url: string, prefetch: SsrPrefetch) {
-  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } });
-  const qi = url.indexOf("?");
-  const ssrPath = qi === -1 ? url : url.slice(0, qi);
-  const ssrSearch = qi === -1 ? "" : url.slice(qi + 1);
-  const head: HeadMeta = await prefetchForPath(url, queryClient, prefetch);
-  const trpcClient = trpc.createClient({ links: [httpBatchLink({ url: "/api/trpc", transformer: superjson })] });
-  const html = renderToString(<trpc.Provider client={trpcClient} queryClient={queryClient}><QueryClientProvider client={queryClient}><Router ssrPath={ssrPath} ssrSearch={ssrSearch}><App /></Router></QueryClientProvider></trpc.Provider>);
-  return { html, dehydratedState: dehydrate(queryClient), head };
-}
+const origin = "https://securestack-hub.pages.dev";
+const escape = (x: string) => x.replace(/[&<>\"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c] as string));
+export function getRoutes() { return ["/", "/category/vpn-troubleshooting", "/about", ...articles.map((a) => `/article/${a.slug}`)]; }
+export function getRedirects() { return articles.map((a) => `${new URL(a.canonicalUrl).pathname} /article/${a.slug} 301`); }
+export function getHead(path: string) { const article = articles.find((a) => path === `/article/${a.slug}`); const category = path === "/category/vpn-troubleshooting"; const title = article ? `${article.title} | SecureStack Hub` : category ? "VPN Troubleshooting Guides | SecureStack Hub" : path === "/about" ? "About SecureStack Hub | Editorial Standards" : "VPN Troubleshooting & Privacy Guides | SecureStack Hub"; const description = article?.description || (category ? "Straightforward VPN troubleshooting guides for Wi-Fi, DNS, devices, and local networks." : "Straightforward VPN troubleshooting and online privacy guides with clear steps, practical limits, and no hype."); return { title, description, canonical: `${origin}${path}`, article }; }
+export function render(url: string) { const path = url.split("?")[0] || "/"; const head = getHead(path); const html = renderToString(<Router ssrPath={path}><App /></Router>); const jsonLd = head.article ? `<script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"Article",headline:head.article.title,description:head.article.description,datePublished:head.article.publishedAt,dateModified:head.article.updatedAt,author:{"@type":"Organization",name:"SecureStack Hub"},mainEntityOfPage:head.canonical})}</script>` : `<script type="application/ld+json">${JSON.stringify({"@context":"https://schema.org","@type":"WebSite",name:"SecureStack Hub",url:origin})}</script>`; const meta = `<title>${escape(head.title)}</title><meta name="description" content="${escape(head.description)}"><meta name="robots" content="index,follow"><link rel="canonical" href="${head.canonical}"><meta property="og:title" content="${escape(head.title)}"><meta property="og:description" content="${escape(head.description)}"><meta property="og:type" content="${head.article ? "article" : "website"}">${jsonLd}`; return { html, head: meta, title: head.title, notFound: false }; }

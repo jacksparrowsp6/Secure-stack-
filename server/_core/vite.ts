@@ -32,14 +32,10 @@ const headTags = (head: any) => {
   return tags.join("\n    ");
 };
 
-function composeHtml(template: string, rendered: { html: string; dehydratedState: unknown; head: any }) {
-  const state = JSON.stringify(rendered.dehydratedState).replace(/</g, "\\u003c");
-  return template.replace("<!--app-head-->", headTags(rendered.head)).replace("<!--app-html-->", rendered.html).replace("</body>", `<script>window.__RQ_STATE__=${state};</script></body>`);
-}
-
 async function renderRequest(req: any, res: any, template: string, render: any) {
-  const rendered = await render(req.originalUrl, await buildSsrPrefetch(req, res));
-  res.status(rendered.head.notFound ? 404 : 200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache" }).end(composeHtml(template, rendered));
+  const rendered = await render(req.originalUrl);
+  const page = template.replace("<!--app-head-->", rendered.head).replace("<!--app-html-->", rendered.html);
+  res.status(rendered.notFound ? 404 : 200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache" }).end(page);
 }
 
 export async function setupVite(app: Express, server: Server) {
