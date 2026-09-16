@@ -1,7 +1,7 @@
 ---
 title: "VPN Not Working on Galaxy S24? 4 Fixes for One UI 6.1 (2026)"
 description: "VPN refusing to connect on your Samsung Galaxy S24? This is a known issue with Android 14 and One UI 6.1 battery optimization. Here are 4 fixes."
-slug: blog-post_09
+slug: vpn-not-working-galaxy-s24
 legacyPath: /2026/09/blog-post_09.html
 category: "VPN Troubleshooting"
 publishedAt: 2026-09-09

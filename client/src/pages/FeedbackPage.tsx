@@ -1,0 +1,7 @@
+import { Link } from "wouter";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { SiteLayout } from "@/components/SiteLayout";
+import { setSeo } from "@/lib/seo";
+import { useEffect } from "react";
+
+export default function FeedbackPage() { useEffect(() => setSeo({ title: "Corrections & Feedback | SecureStack Hub", description: "Send SecureStack Hub a correction or website feedback through our public feedback page.", path: "/feedback" }), []); return <SiteLayout><main className="container about-page"><Link href="/" className="back-link"><ArrowLeft size={15} /> Home</Link><p className="eyebrow">Website feedback</p><h1>Corrections and suggestions</h1><p className="about-lede">Found an outdated instruction, broken link, unclear sentence, or technical error? We welcome corrections that help keep SecureStack Hub useful.</p><div className="about-grid"><section><h2>How to send a correction</h2><p>Open an issue in the site's public source repository and include the article URL, the problem you found, and the suggested correction. You do not need a social-media account.</p><p><a className="text-link" href="https://github.com/jacksparrowsp6/Secure-stack-/issues/new" rel="noreferrer">Open a correction issue <ArrowRight size={15} /></a></p></section><section><h2>What to include</h2><ul><li>The guide title or URL</li><li>The exact sentence or step</li><li>Why it is inaccurate or unclear</li><li>A reliable source when one is available</li></ul></section></div></main></SiteLayout>; }

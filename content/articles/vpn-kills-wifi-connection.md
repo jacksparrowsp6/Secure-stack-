@@ -1,7 +1,7 @@
 ---
 title: "VPN Kills Wi-Fi Connection? 4 Instant Fixes (2026)"
 description: "Does your Wi-Fi drop or say \"No Internet\" the second you turn on your VPN?Here are the 4documented fixes for stuck kill switches and DNS routing error"
-slug: blog-post_504
+slug: vpn-kills-wifi-connection
 legacyPath: /2026/09/blog-post_504.html
 category: "VPN Troubleshooting"
 publishedAt: 2026-09-09

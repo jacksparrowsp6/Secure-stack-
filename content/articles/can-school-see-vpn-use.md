@@ -1,7 +1,7 @@
 ---
 title: "can school see if you're using a vpn"
 description: "Can your school detect your VPN use? Here's exactly what schools can and cannot see, how they detect VPNs, and which bypass school networks in 2026."
-slug: blog-post
+slug: can-school-see-vpn-use
 legacyPath: /2026/09/blog-post.html
 category: "VPN Troubleshooting"
 publishedAt: 2026-09-09
