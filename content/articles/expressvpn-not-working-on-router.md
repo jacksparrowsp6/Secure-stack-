@@ -1,6 +1,6 @@
 ---
-title: "expressvpn not working on router"
-description: "ExpressVPN not working on your router? Here's why it fails on Netgear and Asus, the exact documented fixes, and easier alternatives for your home netw"
+title: "ExpressVPN Not Working on Your Router? Troubleshooting Guide"
+description: "ExpressVPN failing on a router? Work through firmware, protocol, credentials, and network-setting checks for common home setups."
 slug: expressvpn-not-working-on-router
 legacyPath: /2026/09/expressvpn-not-working-on-router.html
 category: "VPN Troubleshooting"

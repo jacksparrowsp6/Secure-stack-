@@ -1,6 +1,6 @@
 ---
-title: "how to play valorant with friends in different regions"
-description: "Can't play Valorant with friends in different regions? Here's the documented VPN method that works in 2026, plus how to minimize ping increase while g"
+title: "How to Play Valorant With Friends in Different Regions"
+description: "Trying to play Valorant with friends in another region? Learn about matchmaking limits, latency, account rules, and connection troubleshooting."
 slug: how-to-play-valorant-with-friends-in
 legacyPath: /2026/09/how-to-play-valorant-with-friends-in.html
 category: "VPN Troubleshooting"

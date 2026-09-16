@@ -1,6 +1,6 @@
 ---
-title: "can wifi owners see what sites I visited incognito"
-description: "Think incognito mode hides your browsing from the WiFi owner? It doesn't. Here's exactly what parents, landlords, and hotels can see."
+title: "Can Wi-Fi Owners See Your Browsing in Incognito Mode?"
+description: "Incognito mode hides local browsing history, not network activity. Learn what Wi-Fi owners may see and what a VPN changes."
 slug: can-wifi-owner-see-incognito-browsing
 legacyPath: /2026/09/can-wifi-owner-see-incognito-browsing.html
 category: "VPN Troubleshooting"

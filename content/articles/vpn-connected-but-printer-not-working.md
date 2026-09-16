@@ -1,6 +1,6 @@
 ---
-title: "VPN Connected but Printer Not Working? 5 Fixes (2026)"
-description: "Printer stops working every time you turn on your VPN? Here's why VPNs block local printing and the 5 documented fixes that restore it in minutes."
+title: "VPN Connected but Printer Not Working? 5 Fixes"
+description: "Printer unavailable when your VPN is connected? Check local-network access, split tunneling, firewall rules, and VPN settings."
 slug: vpn-connected-but-printer-not-working
 legacyPath: /2026/09/vpn-connected-but-printer-not-working.html
 category: "VPN Troubleshooting"
