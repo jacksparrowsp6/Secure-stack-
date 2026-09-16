@@ -9,8 +9,8 @@ updatedAt: 2026-09-10
 ---
 
 <p> </p>
-<p><strong>Quick answer: If your Wi-Fi drops or says "Connected, No Internet" the exact second you turn on your VPN, the issue is almost always a stuck "Kill Switch" or a DNS routing conflict.</strong> The VPN is successfully connecting to its server, but it is failing to hand your internet traffic back to your local router. The fastest fix is to temporarily disable the Kill Switch in your VPN settings, flush your device's DNS cache, and reconnect.</p>
-<p>This "dead Wi-Fi" loop is incredibly frustrating. This guide breaks down the 4 documented reasons your VPN is severing your local network connection and exactly how to fix them on both Windows and mobile devices.</p>
+<p><strong>Quick answer: If your Wi-Fi drops or says "Connected, No Internet" the exact second you turn on your VPN, a stuck "Kill Switch" or DNS routing conflict is a common cause.</strong> The VPN may be connecting to its server while failing to hand your internet traffic back to your local router. A useful first step is to temporarily disable the Kill Switch in your VPN settings, flush your device's DNS cache, and reconnect.</p>
+<p>This "dead Wi-Fi" loop is frustrating. This guide breaks down four common reasons a VPN can interfere with your local network connection and practical fixes for Windows and mobile devices.</p>
 <h2>Fix 1: Check the "Kill Switch" (The #1 Culprit)</h2>
 <p>A Kill Switch is a safety feature that instantly cuts your internet if the VPN drops, preventing your real IP from leaking. However, if the Kill Switch software glitches, it will permanently block your Wi-Fi adapter from sending data, even when the VPN is successfully connected.</p>
 <ol>
@@ -35,7 +35,7 @@ updatedAt: 2026-09-10
 <ol>
 <li>Open your VPN app settings.</li>
 <li>Change the protocol from <strong>WireGuard/UDP</strong> to <strong>OpenVPN (TCP)</strong>.</li>
-<li>TCP traffic looks exactly like normal, secure web browsing (HTTPS) to your router, and is may work better on some restrictive networks, but can be slower and is not guaranteed to pass every network.</li>
+<li>TCP traffic may work better on some restrictive networks, but it can be slower and is not guaranteed to pass every network.</li>
 </ol>
 <h2>Fix 4: Enable Split Tunneling for Local Devices</h2>
 <p>Sometimes the VPN tries to route your local smart home devices (like your printer or local network drive) through the encrypted tunnel, which crashes the connection. Split tunneling tells the VPN to only encrypt your web browser, leaving your local Wi-Fi traffic alone.</p>
