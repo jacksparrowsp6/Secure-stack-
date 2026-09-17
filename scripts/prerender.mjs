@@ -22,7 +22,21 @@ await fs.writeFile(path.join(root, '_redirects'), getRedirects().join('\n') + '\
 const headers = `/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400
+
+/
+  Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
+
+/article/*
+  Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
+
+/category/*
+  Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
+
+/about/
+  Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
+
+/feedback/
+  Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
@@ -31,10 +45,10 @@ const headers = `/*
   Cache-Control: public, max-age=31536000, immutable
 
 /robots.txt
-  Cache-Control: public, max-age=3600, s-maxage=3600
+  Cache-Control: public, max-age=86400, s-maxage=86400
 
 /sitemap.xml
-  Cache-Control: public, max-age=3600, s-maxage=3600
+  Cache-Control: public, max-age=86400, s-maxage=86400
 `;
 await fs.writeFile(path.join(root, '_headers'), headers);
 for (const asset of await fs.readdir(path.join(root, 'assets'))) if (asset.endsWith('.js')) await fs.rm(path.join(root, 'assets', asset));
