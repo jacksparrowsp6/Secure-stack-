@@ -46,7 +46,7 @@ async function startServer() {
     try {
       const origin = process.env.CANONICAL_ORIGIN || process.env.VITE_CANONICAL_ORIGIN || "https://securestack-hub.pages.dev";
       const articles = await listPublicArticles();
-      const urls = ["/", "/about", "/category/vpn-troubleshooting", ...articles.map((article) => `/article/${article.slug}`)];
+      const urls = ["/", "/about/", "/category/vpn-troubleshooting/", ...articles.map((article) => `/article/${article.slug}/`)];
       const xml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((url) => `<url><loc>${origin}${url}</loc></url>`).join("")}</urlset>`;
       res.type("application/xml").send(xml);
     } catch (error) { next(error); }
