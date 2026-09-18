@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
     "build": "node scripts/build-content.mjs && vite build && vite build --ssr src/entry-server.tsx --outDir ../dist/server && node scripts/prerender.mjs && node scripts/verify-seo-assets.mjs",
+    "indexnow": "node scripts/submit-indexnow.mjs",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc --noEmit",
     "format": "prettier --write .",
