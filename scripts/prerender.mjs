@@ -9,7 +9,7 @@ const routes = getRoutes();
 for (const route of routes) {
   const page = render(route);
   const speculationRules = '<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/article/*"},"eagerness":"moderate"},{"where":{"href_matches":"/category/*"},"eagerness":"moderate"},{"where":{"href_matches":"/about/"},"eagerness":"moderate"},{"where":{"href_matches":"/feedback/"},"eagerness":"moderate"}]}</script>';
-  const html = template.replace('<!--app-head-->', `${page.head}${speculationRules}`).replace('<!--app-html-->', page.html).replace(/<script(?! type="application\/ld\+json"| type="speculationrules")[\s\S]*?<\/script>/g, '');
+  const html = template.replace('<html lang="en">', `<html lang="${page.locale || 'en'}">`).replace('<!--app-head-->', `${page.head}${speculationRules}`).replace('<!--app-html-->', page.html).replace(/<script(?! type="application\/ld\+json"| type="speculationrules")[\s\S]*?<\/script>/g, '');
   const output = route === '/' ? path.join(root, 'index.html') : path.join(root, route.replace(/^\//, ''), 'index.html');
   await fs.mkdir(path.dirname(output), { recursive: true });
   await fs.writeFile(output, html);
@@ -30,6 +30,9 @@ const headers = `/*
   Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
 
 /category/*
+  Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
+
+/de/*
   Cache-Control: public, max-age=900, s-maxage=86400, stale-while-revalidate=604800
 
 /about/
