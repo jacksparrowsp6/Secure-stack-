@@ -14,6 +14,9 @@ for (const route of routes) {
   await fs.mkdir(path.dirname(output), { recursive: true });
   await fs.writeFile(output, html);
 }
+const notFoundPage = render('/__not-found__/');
+const notFoundHtml = template.replace('<html lang="en">', `<html lang="${notFoundPage.locale || 'en'}">`).replace('<!--app-head-->', `${notFoundPage.head}`).replace('<!--app-html-->', notFoundPage.html).replace(/<script(?! type="application\/ld\+json")[\s\S]*?<\/script>/g, '');
+await fs.writeFile(path.join(root, '404.html'), notFoundHtml);
 const robots = `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`;
 await fs.writeFile(path.join(root, 'robots.txt'), robots);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes.map((route) => `<url><loc>${origin}${route}</loc><lastmod>${getLastModified(route)}</lastmod></url>`).join('')}</urlset>`;
